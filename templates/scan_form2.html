@@ -11,7 +11,7 @@
 <body>
     <div>
         <h1>QR Code Scan Form raw.</h1>
-        <div id="reader" style="width:300px"></div>
+        <div id="reader" style="width:600px"></div>
         <!-- <div style="width: 500px" id="reader"></div> -->
         <!-- <div id="qr-reader" style="width: 600px"></div> -->
 
@@ -21,7 +21,8 @@
             <input type="submit" value="Submit">
         </form>
 
-        <script src="https://unpkg.com/html5-qrcode@2.0.9/dist/html5-qrcode.min.js"></script>
+        <!-- <script src="https://unpkg.com/html5-qrcode@2.0.9/dist/html5-qrcode.min.js"></script> -->
+        <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
         <script>/**
     function onScanSuccess(decodedText, decodedResult) {
         console.log(`Code scanned = ${decodedText}`, decodedResult);
@@ -52,7 +53,7 @@
                 document.getElementById('id_isbn').value = decodedText;
              // document.getElementById('form_isbn').submit();
             };
-            const config = { fps: 10, qrbox: { width: 250, height: 250 } };
+            const config = { fps: 10, qrbox: { width: 350, height: 350 } };
 
             // If you want to prefer front camera
             //html5QrCode.start({ facingMode: "user" }, config, qrCodeSuccessCallback);
