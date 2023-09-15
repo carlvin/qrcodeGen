@@ -11,8 +11,8 @@
 <body>
     <div>
         <h1>QR Code Scan Form raw.</h1>
-
-        <div style="width: 500px" id="reader"></div>
+        <div id="reader" style="width:300px"></div>
+        <!-- <div style="width: 500px" id="reader"></div> -->
         <!-- <div id="qr-reader" style="width: 600px"></div> -->
 
         <form id="form_isbn" method="post">
@@ -34,7 +34,7 @@
     html5QrcodeScanner.render(onScanSuccess);
    **/
 
-
+            /**
             Html5Qrcode.getCameras().then(devices => {
                 if (devices && devices.length) {
                     var cameraId = device[0].id;
@@ -42,7 +42,7 @@
             }).catch(err => {
                 //err
             });
-
+            **/
             const html5QrCode = new Html5Qrcode("reader", /* verbose= */ true);
 
             const qrCodeSuccessCallback = (decodedText, decodedResult) => {
@@ -58,7 +58,7 @@
             //html5QrCode.start({ facingMode: "user" }, config, qrCodeSuccessCallback);
 
             // If you want to prefer back camera
-            //html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
+            html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
 
             // Select front camera or fail with `OverconstrainedError`.
            // html5QrCode.start({ facingMode: { exact: "user" } }, config, qrCodeSuccessCallback);
@@ -67,7 +67,7 @@
             //html5QrCode.start({ facingMode: { exact: "environment" } }, config, qrCodeSuccessCallback);
 
            // html5QrCode.start({ deviceId: { exact: cameraId} }, config, qrCodeSuccessCallback);
-           html5QrCode.start({ deviceId: cameraId}, config, qrCodeSuccessCallback);
+           //html5QrCode.start({ deviceId: cameraId}, config, qrCodeSuccessCallback);
 
         </script>
     </div>
