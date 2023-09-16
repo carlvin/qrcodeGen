@@ -56,5 +56,5 @@ def scan_view(request):
 
         #return render(request, 'scan_form.html', {'scanned_data': scanned_data})
     
-    return render(request, 'scan_form2.html', {'form': form})
+    return render(request, 'scan_form3.html', {'form': form})
 

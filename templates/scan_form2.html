@@ -22,7 +22,7 @@
         </form>
 
         <!-- <script src="https://unpkg.com/html5-qrcode@2.0.9/dist/html5-qrcode.min.js"></script> -->
-        <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+        <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js" type="text/javascript"></script>
         <script>/**
     function onScanSuccess(decodedText, decodedResult) {
         console.log(`Code scanned = ${decodedText}`, decodedResult);
@@ -44,13 +44,13 @@
                 //err
             });
             **/
-            const html5QrCode = new Html5Qrcode("reader", /* verbose= */ false);
+            const html5QrCode = new Html5Qrcode("reader", /* verbose= */ true);
 
             const qrCodeSuccessCallback = (decodedText, decodedResult) => {
                 /* handle success */
-                console.log(`Code scanned = ${decodedText}`, decodedResult);
-               // html5QrCode.clear();
-                html5QrCode.stop();
+                console.log('Code scanned = ${decodedText}', decodedResult);
+                html5QrCode.clear();
+                //html5QrCode.stop();
                 document.getElementById('id_isbn').value = decodedText;
              // document.getElementById('form_isbn').submit();
             };
@@ -61,9 +61,7 @@
             //html5QrCode.start({ facingMode: "user" }, config, qrCodeSuccessCallback);
 
             // If you want to prefer back camera
-            html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback).catch((err=>{
-                console.log("failed to start")
-            }));
+            html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
 
             // Select front camera or fail with `OverconstrainedError`.
            // html5QrCode.start({ facingMode: { exact: "user" } }, config, qrCodeSuccessCallback);
@@ -73,7 +71,7 @@
 
            // html5QrCode.start({ deviceId: { exact: cameraId} }, config, qrCodeSuccessCallback);
            //html5QrCode.start({ deviceId: cameraId}, config, qrCodeSuccessCallback);
-
+        
         </script>
     </div>
 

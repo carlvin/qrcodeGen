@@ -1,0 +1,65 @@
+<!-- scan_form.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+
+<body>
+
+    <h1>QR Code Scan Form raw.</h1>
+    <div id="qr-reader" style="width:450px"></div>
+    <div id="qr-reader-results" style="width:350px"></div>
+</body>
+
+</body>
+<script>Html5Qrcode.getCameras().then(devices => {
+    if (devices && devices.length) {
+        var cameraId = devices[0].id;
+        const choosenCamera = {
+            facingMode: "environment"
+        };
+
+        const html5QrCode = new Html5Qrcode('qr-reader', false);
+        const config = {
+            fps: 1,
+            qrbox: {
+                width: 250,
+                height: 250
+            }
+        };
+
+        html5QrCode.start(choosenCamera, config, (decodedText, decodedResult) => {
+            console.log({
+                decodedText, decodedResult
+            });
+            document.getElementById('qr-reader-results').innerText = decodedText;
+            html5QrCode.stop();
+            html5QrCode.clear();
+        }, (errorMessage) => {
+            console.log({
+                errorMessage
+            });
+            document.getElementById('qr-reader-results').innerText = errorMessage;
+        })
+        .catch ((err) => {
+            console.dir({
+                err
+            });
+            document.getElementById('qr-reader-results').innerText = err;
+            html5QrCode.stop();
+            html5QrCode.clear();
+        });
+    }
+}).catch (err => {
+    document.getElementById('qr-reader-results').innerText = err;
+    html5QrCode.stop();
+    html5QrCode.clear();
+});
+</script>
+
+</html>
